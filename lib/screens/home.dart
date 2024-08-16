@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vmusic/constants/color.dart';
 import 'package:vmusic/constants/text_style.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,13 +8,65 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgDarkColor,
       appBar: AppBar(
+        backgroundColor: bgDarkColor,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.search,
+              color: whiteColor,
+            ),
+          ),
+        ],
+        leading: const Icon(
+          Icons.sort_rounded,
+          color: whiteColor,
+        ),
         title: Text(
           'VMusic',
-          style: outStyle(fontWeight: FontWeight.bold),
+          style: ourStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
         ),
       ),
-      body: Container(),
+      body: Padding(
+        padding: const EdgeInsets.all(8),
+        child: ListView.builder(
+            physics: const BouncingScrollPhysics(),
+            itemCount: 100,
+            itemBuilder: (context, index) {
+              return Container(
+                margin: const EdgeInsets.only(bottom: 4),
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  tileColor: bgColor,
+                  title: Text(
+                    'Music Name',
+                    style: ourStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
+                  ),
+                  subtitle: Text(
+                    "Artist Name",
+                    style: ourStyle(fontSize: 12),
+                  ),
+                  leading: const Icon(
+                    Icons.music_note,
+                    color: whiteColor,
+                    size: 32,
+                  ),
+                  trailing:
+                      const Icon(Icons.play_arrow, color: whiteColor, size: 26),
+                ),
+              );
+            }),
+      ),
     );
   }
 }
