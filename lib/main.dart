@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:vmusic/screens/home.dart';
+import 'package:provider/provider.dart';
+import 'package:vmusic/pages/home.dart';
+import 'package:vmusic/themes/theme_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -11,18 +17,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'VMusic',
-      theme: ThemeData(
-        fontFamily: "Vazirmatn",
-        useMaterial3: true,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
-      ),
-      home: const HomeScreen(),
+      theme: Provider.of<ThemeProvider>(context).themeData,
+      home: const HomePage(),
     );
   }
 }
