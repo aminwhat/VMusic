@@ -13,7 +13,7 @@ Future<void> main() async {
   _audioHandler = await AudioService.init(
     builder: () => MyAudioHandler(),
     config: const AudioServiceConfig(
-      androidNotificationChannelId: 'io.vazir.vmusic',
+      androidNotificationChannelId: 'com.ryanheise.myapp.channel.audio',
       androidNotificationChannelName: 'VMusic',
       androidNotificationOngoing: true,
     ),
