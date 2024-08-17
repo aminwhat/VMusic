@@ -14,7 +14,13 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-  provider: ^6.1.2
+  get: ^4.6.6
+  on_audio_query: ^2.9.0
+  transparent_image: ^2.0.1
+  just_audio: ^0.9.37
+  permission_handler: ^11.3.1
+  audio_video_progress_bar: ^2.0.3
+  audio_service: ^0.18.15
 
 dev_dependencies:
   flutter_test:
