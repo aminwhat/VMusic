@@ -2,10 +2,31 @@ import { StyleSheet, Text, SafeAreaView, View, Pressable } from 'react-native'
 import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign, Entypo, MaterialIcons } from '@expo/vector-icons';
-
+import * as AppAuth from 'expo-app-auth'
 
 
 const LoginScreen = () => {
+
+    async function authenticate() {
+        const config = {
+            issuer: 'https://accounts.spotify.com',
+            clientId: '2d2dc45c579443819621813f841755e7',
+            scopes: [
+                'user-read-email',
+                'user-library-read',
+                'user-read-recently-played',
+                'user-top-read',
+                'playlist-read-private',
+                'playlist-read-collaborative',
+                'playlist-modify-public'
+            ],
+            redirectUrl: "exp://localhost:19002/--/spotify-auth-callback"
+        }
+
+        const result = await AppAuth.authAsync(config)
+        console.log(result)
+    }
+
     return (
         <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
             <SafeAreaView>
@@ -20,17 +41,19 @@ const LoginScreen = () => {
                     marginHorizontal: 5
                 }}>Millions of songs free on spotify!</Text>
                 <View style={{ height: 80 }} />
-                <Pressable style={{
-                    backgroundColor: "#1DB954",
-                    padding: 10,
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
-                    width: 300,
-                    borderRadius: 25,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginVertical: 10
-                }}>
+                <Pressable
+                    onPress={authenticate}
+                    style={{
+                        backgroundColor: "#1DB954",
+                        padding: 10,
+                        marginLeft: 'auto',
+                        marginRight: 'auto',
+                        width: 300,
+                        borderRadius: 25,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginVertical: 10
+                    }}>
                     <Text>Sign In With Spotify</Text>
                 </Pressable>
 
